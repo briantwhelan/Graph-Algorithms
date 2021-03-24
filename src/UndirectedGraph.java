@@ -56,7 +56,8 @@ public class UndirectedGraph
     public void addEdge(int vertex1, int vertex2)
     {
     	if((vertex1 >= 0) && (vertex1 < numberOfVertices)
-    		&& (vertex2 >= 0) && (vertex2 < numberOfVertices))
+    		&& (vertex2 >= 0) && (vertex2 < numberOfVertices)
+    		&& (!adjacencyLists[vertex1].contains(vertex2)))
     	{
 	    	adjacencyLists[vertex1].add(vertex2);
 	    	adjacencyLists[vertex2].add(vertex1);
@@ -92,11 +93,7 @@ public class UndirectedGraph
     	int degree = -1;
     	if((vertex >= 0) && (vertex < numberOfVertices))
     	{
-	    	degree = 0;
-	    	for(int adjacentVertex : getAdjacencyList(vertex))
-	    	{
-	    		degree++;
-	    	}
+    		degree = adjacencyLists[vertex].size();
     	}
     	
     	return degree;
@@ -119,17 +116,6 @@ public class UndirectedGraph
      */
     public int getNumberOfEdges()
     {
-    	//return numberOfEdges;
-    	numberOfEdges = 0;
-    	for(int vertex = 0; vertex < numberOfVertices; vertex++)
-	    {
-		    for(int adjacentVertex : getAdjacencyList(vertex))
-		    {
-		    	numberOfEdges++;
-		    }
-	    }
-    	numberOfEdges /= 2;
-    	
     	return numberOfEdges;
     }
     
