@@ -15,14 +15,21 @@ import org.junit.Test;
 public class UndirectedGraphTest 
 {
 	/**
-     * Test constructor
+     * Test constructor for invalid inputs
      */
     @Test(expected = IllegalArgumentException.class)
-    public void testConstructor()
+    public void testConstructorException()
     {
     	//Test trying to create invalid graph
     	new UndirectedGraph(-1);
-    	
+    }
+    
+    /**
+     * Test constructor for valid inputs
+     */
+    @Test
+    public void testConstructor()
+    {  	
     	//Test trying to create valid graph
     	new UndirectedGraph(10);
     }
