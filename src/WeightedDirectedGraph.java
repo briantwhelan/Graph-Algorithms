@@ -69,10 +69,10 @@ public class WeightedDirectedGraph
     }
     
     /**
-     * Get degree of a particular vertex
+     * Get indegree of a particular vertex
      * 
-     * @param vertex: vertex of which degree is required
-     * @return degree of vertex
+     * @param vertex: vertex of which indegree is required
+     * @return indegree of vertex
      */
     public int getDegree(int vertex)
     {

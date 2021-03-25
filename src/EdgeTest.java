@@ -25,6 +25,18 @@ public class EdgeTest
     }
     
     /**
+     * Test getTailVertex()
+     */
+    @Test
+    public void testGetTailVertex()
+    {    	
+    	Edge edge = new Edge(0, 1, 2.5);
+    	
+    	//Test getting tail vertex
+    	assertEquals("Testing getTailVertex", 0, edge.getTailVertex());
+    }
+    
+    /**
      * Test getHeadVertex()
      */
     @Test
@@ -33,7 +45,7 @@ public class EdgeTest
     	Edge edge = new Edge(0, 1, 2.5);
     	
     	//Test getting head vertex
-    	assertEquals("Testing getHeadVertex", 0, edge.getHeadVertex());
+    	assertEquals("Testing getHeadVertex", 1, edge.getHeadVertex());
     }
     
     /**
@@ -95,9 +107,17 @@ public class EdgeTest
     	//Test equals on a different object type
     	assertEquals("Testing equals for a different object", false, edge.equals(new String("test")));
     	
+    	//Test equals on the same object type with equal field values
+    	Edge edge2 = new Edge(0, 1, 2.5);
+    	assertEquals("Testing equals for the same object type with equal field values", true, edge.equals(edge2));
+    	
     	//Test equals on the same object type with different field values
-    	Edge edge2 = new Edge(1, 3, 4.0);
-    	assertEquals("Testing equals for a different object", false, edge.equals(edge2));
+    	edge2 = new Edge(2, 1, 2.5);
+    	assertEquals("Testing equals for the same object type with different field values", false, edge.equals(edge2));
+    	edge2 = new Edge(0, 3, 2.5);
+    	assertEquals("Testing equals for the same object type with different field values", false, edge.equals(edge2));
+    	edge2 = new Edge(0, 1, 4.0);
+    	assertEquals("Testing equals for the same object type with different field values", false, edge.equals(edge2));
     }
     
     /**

@@ -83,11 +83,11 @@ public class WeightedDirectedGraphTest
     	assertEquals("Testing getIncidentEdges for a valid vertex", new HashSet<Edge>(), graph.getIncidentEdges(0));
     	
     	//Test getting a non-empty adjacency list for a valid vertex
-    	Edge edge = new Edge(0, 1, 1.0);
+    	Edge edge = new Edge(1, 0, 1.0);
     	graph.addEdge(edge);
-    	edge = new Edge(0, 2, 1.0);
+    	edge = new Edge(2, 0, 1.0);
     	graph.addEdge(edge);
-    	assertEquals("Testing getIncidentEdges for a valid vertex", new HashSet<Edge>(Arrays.asList(new Edge(0, 2, 1.0), new Edge(0, 1, 1.0))), graph.getIncidentEdges(0));    
+    	assertEquals("Testing getIncidentEdges for a valid vertex", new HashSet<Edge>(Arrays.asList(new Edge(2, 0, 1.0), new Edge(1, 0, 1.0))), graph.getIncidentEdges(0));    
     }
     
     /**
@@ -103,14 +103,14 @@ public class WeightedDirectedGraphTest
     	assertEquals("Testing getDegree for an invalid vertex", -1, graph.getDegree(-1));
     	
     	//Test getting degree of a valid vertex with degree 0
-    	assertEquals("Testing getDegree for an valid vertex", 0, graph.getDegree(0));
+    	assertEquals("Testing getDegree for a valid vertex", 0, graph.getDegree(0));
     	
     	//Test getting degree of a valid vertex with degree 2
-    	Edge edge = new Edge(0, 1, 1.0);
+    	Edge edge = new Edge(1, 0, 1.0);
     	graph.addEdge(edge);
-    	edge = new Edge(0, 2, 1.0);
+    	edge = new Edge(2, 0, 1.0);
     	graph.addEdge(edge);
-    	assertEquals("Testing getDegree for an valid vertex", 2, graph.getDegree(0));  
+    	assertEquals("Testing getDegree for a valid vertex", 2, graph.getDegree(0));  
     }
     
     /**
@@ -159,10 +159,10 @@ public class WeightedDirectedGraphTest
     	
     	//Test getting number of vertices in a graph which has 2 edges
     	graph = new WeightedDirectedGraph(3);
-    	Edge edge = new Edge(0, 1, 1.0);
+    	Edge edge = new Edge(1, 0, 1.0);
     	graph.addEdge(edge);
-    	edge = new Edge(0, 2, 1.0);
+    	edge = new Edge(2, 0, 1.0);
     	graph.addEdge(edge);
-    	assertEquals("Testing toString on non-empty graph", "3 vertices, 2 edges\n0: 0-1, 1.0 0-2, 1.0 \n1: \n2: \n", graph.toString());  
+    	assertEquals("Testing toString on non-empty graph", "3 vertices, 2 edges\n0: 2-0, 1.0 1-0, 1.0 \n1: \n2: \n", graph.toString());  
     }
 }

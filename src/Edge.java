@@ -10,21 +10,31 @@ import java.util.Objects;
  *************************************************************************/
 public class Edge implements Comparable<Edge>
 {
-	private final int vertex1;
-	private final int vertex2;
+	private final int tailVertex;
+	private final int headVertex;
 	private final double weight;
 	
 	/**
      * Create an edge with the specified properties
-     * @param vertex1: head vertex of edge
-     * @param vertex2: tail vertex of edge
+     * @param vertex1: tail vertex of edge
+     * @param vertex2: head vertex of edge
      * @param weight: weight of edge
      */
-	public Edge(int vertex1, int vertex2, double weight)
+	public Edge(int tailVertex, int headVertex, double weight)
 	{
-		this.vertex1 = vertex1;
-		this.vertex2 = vertex2;
+		this.tailVertex = tailVertex;
+		this.headVertex = headVertex;
 		this.weight = weight;
+	}
+	
+	/**
+     * Get tail vertex in edge
+     * 
+     * @return tail vertex in edge
+     */
+	public int getTailVertex()
+	{
+		return tailVertex;
 	}
 	
 	/**
@@ -34,7 +44,7 @@ public class Edge implements Comparable<Edge>
      */
 	public int getHeadVertex()
 	{
-		return vertex1;
+		return headVertex;
 	}
 	
 	/**
@@ -46,13 +56,13 @@ public class Edge implements Comparable<Edge>
 	public int getOtherVertex(int vertex)
 	{
 		int otherVertex = -1;
-		if(vertex == vertex1)
+		if(vertex == tailVertex)
 		{
-			otherVertex = vertex2;
+			otherVertex = headVertex;
 		}
-		else if(vertex == vertex2)
+		else if(vertex == headVertex)
 		{
-			otherVertex = vertex1;
+			otherVertex = tailVertex;
 		}
 		
 		return otherVertex;
@@ -110,8 +120,8 @@ public class Edge implements Comparable<Edge>
 		else
 		{
 			Edge edge = (Edge)object;
-			isEquals = (edge.getHeadVertex() == vertex1)
-						&& (edge.getOtherVertex(edge.getHeadVertex()) == vertex2)
+			isEquals = (edge.getTailVertex() == tailVertex)
+						&& (edge.getHeadVertex() == headVertex)
 						&&	(edge.getWeight() == weight);
 		}
 		return isEquals;
@@ -126,8 +136,8 @@ public class Edge implements Comparable<Edge>
 	public int hashCode()
 	{
 		int result = 17;
-		result = 31 * result + vertex1;
-		result = 31 * result + vertex2;
+		result = 31 * result + tailVertex;
+		result = 31 * result + headVertex; 
 		result = 31 * result + (int)weight;
 		return result;
 		//return Objects.hash(vertex1, vertex2, weight);
@@ -141,6 +151,6 @@ public class Edge implements Comparable<Edge>
 	@Override
 	public String toString()
 	{
-		return vertex1 + "-" + vertex2 + ", " + weight;
+		return tailVertex + "-" + headVertex + ", " + weight;
 	}
 }
