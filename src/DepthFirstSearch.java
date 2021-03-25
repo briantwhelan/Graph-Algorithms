@@ -16,7 +16,7 @@ public class DepthFirstSearch
 	/**
      * Perform Depth First Search on all vertices in a graph
      */
-	public DepthFirstSearch(UndirectedGraph graph, int sourceVertex)
+	public DepthFirstSearch(UndirectedGraph graph, int sourceVertex) throws IllegalArgumentException
 	{
 		if((sourceVertex < 0) || (sourceVertex >= graph.getNumberOfVertices()))
 		{

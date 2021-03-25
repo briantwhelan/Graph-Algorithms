@@ -17,7 +17,7 @@ public class UndirectedGraph
      * Create an empty undirected graph with a particular number of vertices
      * @param: number of vertices to be included in undirected graph
      */
-	public UndirectedGraph(int numberOfVertices)throws IllegalArgumentException
+	public UndirectedGraph(int numberOfVertices) throws IllegalArgumentException
 	{
 		if(numberOfVertices < 0)
 		{

@@ -18,7 +18,7 @@ public class BreadthFirstSearch
 	/**
      * Perform Breadth First Search on all vertices in a graph
      */
-	public BreadthFirstSearch(UndirectedGraph graph, int sourceVertex)
+	public BreadthFirstSearch(UndirectedGraph graph, int sourceVertex) throws IllegalArgumentException
 	{
 		if((sourceVertex < 0) || (sourceVertex >= graph.getNumberOfVertices()))
 		{
