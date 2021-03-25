@@ -1,6 +1,6 @@
 import java.util.Stack;
 /*************************************************************************
- *  Depth First Seacrh class.
+ *  Depth First Search class.
  *
  *  @version 1.0 24/3/21
  *
