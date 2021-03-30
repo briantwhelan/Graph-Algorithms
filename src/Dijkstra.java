@@ -1,10 +1,8 @@
-import java.util.PriorityQueue;
 import java.util.Stack;
-
 /*************************************************************************
  *  Dijkstra class.
  *
- *  @version 1.0 25/3/21
+ *  @version 1.0 29/3/21
  *
  *  @author Brian Whelan
  *
@@ -12,8 +10,8 @@ import java.util.Stack;
 public class Dijkstra 
 {
 	private Edge[] edgeTo;
-	private double[] distanceTo
-	private PriorityQueue<Double> minPQ;
+	private double[] distanceTo;
+	private MinPQ<Integer> minPQ;
 	
 	/**
      * Perform Depth First Search on all vertices in a graph
@@ -27,20 +25,47 @@ public class Dijkstra
 		
 		edgeTo = new Edge[graph.getNumberOfVertices()];
 		distanceTo = new double[graph.getNumberOfVertices()];
-		minPQ = new PriorityQueue<Double>(graph.getNumberOfVertices());
+		minPQ = new MinPQ<Integer>(graph.getNumberOfVertices());
 		
-		for(int vertex = 0; v < graph.getNumberOfVertices(); vertex++)
+		for(int vertex = 0; vertex < graph.getNumberOfVertices(); vertex++)
 		{
 			distanceTo[vertex] = Double.POSITIVE_INFINITY;
 		}
 		distanceTo[sourceVertex] = 0.0;
 		
-		minPQ.insert(s, 0.0);
+		minPQ.insert(sourceVertex);
 		while(!minPQ.isEmpty())
 		{
-			relax(graph, minPQ.delMin());
+			relax(graph, minPQ.deleteMin());
 		}
 	}
+	
+    /**
+     * Relax
+     * 
+     * @param graph: graph to relax 
+     * @param vertex:
+     */
+    private void relax(WeightedDirectedGraph graph, int vertex)
+    {
+    	for(Edge edge : graph.getIncidentEdges(vertex))
+    	{
+    		int w = edge.getHeadVertex();
+    		if(distanceTo[w] > (distanceTo[vertex] + edge.getWeight()))
+    		{
+    			distanceTo[w] = distanceTo[vertex] + edge.getWeight();
+    			edgeTo[w] = edge;
+    			if(minPQ.contains(w))
+    			{
+    				minPQ.changeKey(w, distanceTo[w]);
+    			}
+    			else
+    			{
+    				minPQ.insert(w, distanceTo[w]);
+    			}
+    		}
+    	}
+    }
 	
 	/**
      * Get the distance to a particular vertex from the source vertex
